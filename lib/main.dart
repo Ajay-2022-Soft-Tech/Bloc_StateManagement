@@ -1,6 +1,8 @@
 import 'package:bloc_state_management/bloc/counter/counter_bloc.dart';
+import 'package:bloc_state_management/bloc/internet_connectivity/internet_bloc.dart';
 import 'package:bloc_state_management/bloc/switch_example/switch_bloc.dart';
 import 'package:bloc_state_management/ui/counter/counter_screen.dart';
+import 'package:bloc_state_management/ui/internet_connectivity/internet_connectivity_screen.dart';
 import 'package:bloc_state_management/ui/switch_example/switch_example_screen.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => CounterBloc() ),
-          BlocProvider(create: (_) => SwitchBloc() )
+          BlocProvider(create: (_) => SwitchBloc() ),
+          BlocProvider(create: (_) => InternetBloc() ),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: SwitchExampleScreen()
+            home: InternetConnectivityScreen()
 
           //
 
