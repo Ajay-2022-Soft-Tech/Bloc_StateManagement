@@ -38,6 +38,12 @@ dependencies:
   json_serializable: ^6.8.0
   equatable: ^2.0.5
 
+#  Used for logic
+  bloc: ^8.1.4
+
+#  uses for Representation of UI
+  flutter_bloc: ^8.1.6
+
 
 dev_dependencies:
   flutter_test:
