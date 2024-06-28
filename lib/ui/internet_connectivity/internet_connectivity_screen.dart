@@ -1,6 +1,4 @@
-import 'package:bloc_state_management/bloc/internet_connectivity/internet_bloc.dart';
-import 'package:bloc_state_management/bloc/internet_connectivity/internet_bloc.dart';
-import 'package:bloc_state_management/bloc/internet_connectivity/internet_state.dart';
+import 'package:bloc_state_management/cubit/internet_bloc/internet_cubit.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,9 +20,9 @@ class InternetConnectivityScreen extends StatelessWidget {
         children: [
 
           // Block Consumer is used as both for showing UI and background process eg , Snackbar , Text
-          BlocConsumer<InternetBloc,InternetState>(
+          BlocConsumer<InternetCubit,InternetState>(
               listener: (context,state){
-                if(state is InternetGainedState){
+                if(state == InternetState.Gained){
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                         content: Center(child: Text('Internet Connected')),
@@ -33,7 +31,7 @@ class InternetConnectivityScreen extends StatelessWidget {
                   );
 
                 }
-                else if (state is InternetLostState){
+                else if (state ==InternetState.Lost){
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Internet Not Connected'),
@@ -45,10 +43,10 @@ class InternetConnectivityScreen extends StatelessWidget {
               },
 
               builder: (context,state){
-                if(state is InternetGainedState){
+                if(state == InternetState.Gained){
                   return Center(child: Text('Connected',style: TextStyle(fontSize: 40)));
                 }
-                else if (state is InternetLostState){
+                else if (state == InternetState.Lost){
                   return Center(child: Text('Not Connected',style: TextStyle(fontSize: 40)));
                 }
                 else{

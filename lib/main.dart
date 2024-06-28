@@ -1,13 +1,11 @@
 import 'package:bloc_state_management/bloc/counter/counter_bloc.dart';
+import 'package:bloc_state_management/bloc/favourite_app/favourite_app_bloc.dart';
 import 'package:bloc_state_management/bloc/image_picker/image_picker_bloc.dart';
 import 'package:bloc_state_management/bloc/switch_example/switch_bloc.dart';
 import 'package:bloc_state_management/bloc/todo/to_do_bloc.dart';
 import 'package:bloc_state_management/cubit/internet_bloc/internet_cubit.dart';
-import 'package:bloc_state_management/ui/counter/counter_screen.dart';
-import 'package:bloc_state_management/ui/image_picker/image_picker_screen.dart';
-import 'package:bloc_state_management/ui/internet_connectivity/internet_connectivity_screen.dart';
-import 'package:bloc_state_management/ui/switch_example/switch_example_screen.dart';
-import 'package:bloc_state_management/ui/todo/to_do_screen/to_do_screen.dart';
+import 'package:bloc_state_management/repository/favourite_repository.dart';
+import 'package:bloc_state_management/ui/favourite_app/favourite_app_screen.dart';
 import 'package:bloc_state_management/utils/image_picker_utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -30,15 +28,16 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => InternetCubit() ),
           BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils()) ),
           BlocProvider(create: (_) => ToDoBloc() ),
+          BlocProvider(create: (_) => FavouriteBloc(FavouriteRepository() )),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
+            color: Colors.grey[400],
+
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
             ),
-            home: ToDoScreen()
+            home: FavouriteAppScreen()
 
           //
 
